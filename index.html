@@ -209,6 +209,20 @@
   .burger.open span:nth-child(2){ opacity:0; }
   .burger.open span:nth-child(3){ transform:translateY(-10px) rotate(-45deg); }
 
+  /* Mobile menu: colapsado por defecto en TODAS las resoluciones.
+     Solo se muestra si tiene la clase .open (el burger es el único que la agrega,
+     y el burger a su vez solo es visible/clickeable por debajo de 760px). */
+  .mobile-menu{
+    max-height:0; overflow:hidden; background:var(--bg-alt);
+    border-bottom:1px solid var(--line);
+    transition:max-height .35s var(--ease);
+  }
+  .mobile-menu.open{ max-height:320px; }
+  .mobile-menu ul{ padding:20px 28px 26px; display:flex; flex-direction:column; gap:20px; }
+  .mobile-menu a{
+    font-family:'JetBrains Mono',monospace; font-size:14px; text-transform:uppercase; letter-spacing:0.06em;
+  }
+
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
@@ -223,10 +237,10 @@
     content:'';
     position:absolute; inset:0;
     background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      linear-gradient(rgba(245,243,239,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,243,239,0.045) 1px, transparent 1px);
     background-size:64px 64px;
-    mask-image:radial-gradient(ellipse 70% 60% at 60% 20%, black, transparent);
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
     pointer-events:none;
   }
   .hero-grid{
@@ -275,34 +289,33 @@
   }
   .peel-before{
     background:
-      repeating-linear-gradient(115deg, #2a2a2f 0 2px, #232326 2px 6px),
-      linear-gradient(160deg,#2c2c30,#141416);
-    filter:saturate(0.7) brightness(0.85);
+      linear-gradient(0deg, rgba(10,10,12,0.55), rgba(10,10,12,0.15)),
+      url('images/bmw-x2-detalle-parrilla.jpg') center/cover no-repeat;
+    filter:grayscale(0.55) brightness(0.8);
   }
   .peel-before::after{
-    content:'SIN PPF';
+    content:'PROCESO';
     position:absolute; bottom:18px; left:18px;
     font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
-    color:var(--muted); background:rgba(10,10,12,0.6); padding:6px 10px; border-radius:2px;
+    color:var(--text); background:rgba(10,10,12,0.55); padding:6px 10px; border-radius:2px;
   }
   .peel-after{
     background:
-      linear-gradient(135deg,#242428,#0d0d0f 55%, #1b1b1f),
-      radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255,255,255,0.18), transparent 60%);
-    box-shadow:inset 0 0 80px rgba(255,90,31,0.06);
+      linear-gradient(0deg, rgba(10,10,12,0.35), rgba(10,10,12,0.05)),
+      url('images/bmw-x2-frontal.jpg') center/cover no-repeat;
   }
   .peel-after::before{
     content:'';
     position:absolute; inset:0;
-    background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.10) 48%, transparent 56%);
-    animation: shine 3.5s ease-in-out infinite;
+    background:linear-gradient(115deg, transparent 44%, rgba(255,255,255,0.06) 50%, transparent 56%);
+    animation: shine 8s ease-in-out infinite;
   }
   @keyframes shine{
-    0%,100%{ transform:translateX(-15%); opacity:.5;}
-    50%{ transform:translateX(15%); opacity:1;}
+    0%,100%{ transform:translateX(-8%); opacity:.4;}
+    50%{ transform:translateX(8%); opacity:.7;}
   }
   .peel-after::after{
-    content:'CON PPF · EVSF';
+    content:'RESULTADO · EVSF';
     position:absolute; bottom:18px; right:18px;
     font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
     color:var(--text); background:rgba(255,90,31,0.16); border:1px solid rgba(255,90,31,0.4);
@@ -582,16 +595,6 @@
     .nav-links, .nav-cta .btn-ghost{ display:none; }
     .burger{ display:block; }
     .nav-cta{ gap:14px; }
-    .mobile-menu{
-      max-height:0; overflow:hidden; background:var(--bg-alt);
-      border-bottom:1px solid var(--line);
-      transition:max-height .35s var(--ease);
-    }
-    .mobile-menu.open{ max-height:320px; }
-    .mobile-menu ul{ padding:20px 28px 26px; display:flex; flex-direction:column; gap:20px; }
-    .mobile-menu a{
-      font-family:'JetBrains Mono',monospace; font-size:14px; text-transform:uppercase; letter-spacing:0.06em;
-    }
     .hero{ padding:150px 0 70px; }
     .hero-stats{ flex-wrap:wrap; }
     .hero-stats div{ flex:1 1 45%; border-right:none; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:6px;}
@@ -806,7 +809,7 @@
       <div class="work-grid reveal">
         <div class="work-card"><div class="bgfx c1"></div><div><span class="tag">Full PPF</span><h4>Toyota Yaris GR</h4></div></div>
         <div class="work-card"><div class="bgfx c2"></div><div><span class="tag">PPF + Cerámico</span><h4>BMW 330i</h4></div></div>
-        <div class="work-card"><div class="bgfx c3"></div><div><span class="tag">Full PPF · 2026</span><h4>BMW M240i</h4></div></div>
+        <div class="work-card" style="background-image:linear-gradient(0deg, rgba(10,10,12,0.75), rgba(10,10,12,0.05) 55%), url('images/bmw-x2-frontal.jpg'); background-size:cover; background-position:center;"><div><span class="tag">PPF Frontal</span><h4>BMW X2 0km</h4></div></div>
         <div class="work-card"><div class="bgfx c4"></div><div><span class="tag">Corrección</span><h4>Chevy clásico</h4></div></div>
       </div>
 
@@ -1007,17 +1010,7 @@
   window.addEventListener('touchmove', (e) => { if(dragging) setPeel(pctFromEvent(e)); }, {passive:true});
   peelCard.addEventListener('click', (e) => { if(e.target === peelHandle) return; setPeel(pctFromEvent(e)); });
 
-  // Autoplay a subtle back-and-forth once, then stop (respects reduced motion)
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!prefersReduced){
-    let t = 0, dir = 1, cycles = 0;
-    const auto = setInterval(() => {
-      t += dir * 0.6;
-      if(t > 60 || t < 40){ dir *= -1; cycles++; }
-      setPeel(50 + t - 50 <= 0 ? 50 : t);
-      if(cycles > 2) clearInterval(auto);
-    }, 30);
-  }
+  setPeel(50);
 
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
