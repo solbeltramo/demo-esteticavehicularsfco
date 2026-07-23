@@ -159,6 +159,8 @@
     display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em;
     color:var(--muted); text-transform:none; font-weight:400; margin-top:2px;
   }
+  .logo-short{ display:none; }
+  .cta-short{ display:none; }
 
   .nav-links{
     display:flex; gap:36px; align-items:center;
@@ -594,9 +596,28 @@
   @media (max-width:760px){
     .nav-links, .nav-cta .btn-ghost{ display:none; }
     .burger{ display:block; }
-    .nav-cta{ gap:14px; }
-    .hero{ padding:150px 0 70px; }
-    .hero-stats{ flex-wrap:wrap; }
+    .nav-cta{ gap:10px; }
+
+    /* Header compacto: logo corto en una sola línea + botón corto, para que nunca se parta en 3 líneas */
+    .nav{ padding:14px 20px; }
+    .logo{ font-size:14px; gap:8px; }
+    .logo .mark{ width:30px; height:30px; }
+    .logo-full{ display:none; }
+    .logo-short{ display:inline; }
+    .logo .sub{ display:none; }
+    .cta-full{ display:none; }
+    .cta-short{ display:inline; }
+    .nav-cta .btn-primary{ padding:10px 16px; }
+
+    .hero{ padding:104px 0 60px; }
+    .hero-grid{ gap:36px; }
+
+    /* Stats: sacamos el interlineado heredado del body para que no se vean huecos vacíos */
+    .hero-stats{ flex-wrap:wrap; gap:0; }
+    .hero-stats b{ line-height:1.15; margin-bottom:4px; }
+    .hero-stats span{ line-height:1.35; display:block; }
+    .hero-stats div{ padding-top:14px; }
+
     .hero-stats div{ flex:1 1 45%; border-right:none; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:6px;}
     section{ padding:76px 0; }
     .services-grid{ grid-template-columns:1fr; }
@@ -614,8 +635,9 @@
   <nav class="nav">
     <a href="#inicio" class="logo">
       <span class="mark"><span>EVSF</span></span>
-      <span>
-        Estética Vehicular San Fco
+      <span class="logo-text">
+        <span class="logo-full">Estética Vehicular San Fco</span>
+        <span class="logo-short">Estética Vehicular</span>
         <span class="sub">Detailing &amp; PPF · Desde 2017</span>
       </span>
     </a>
@@ -630,7 +652,7 @@
 
     <div class="nav-cta">
       <a href="https://wa.me/5493564326839?text=Hola%2C%20quiero%20consultar%20por%20un%20servicio%20para%20mi%20auto" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
-      <a href="#contacto" class="btn btn-primary">Dejá tu consulta</a>
+      <a href="#contacto" class="btn btn-primary"><span class="cta-full">Dejá tu consulta</span><span class="cta-short">Consulta</span></a>
       <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
